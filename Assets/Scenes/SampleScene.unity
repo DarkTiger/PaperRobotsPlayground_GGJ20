@@ -291,6 +291,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4424606367083606410, guid: 3352fa81f1fb94b489f2479d262dfd4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4424606367083606454, guid: 3352fa81f1fb94b489f2479d262dfd4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -474,11 +479,52 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 133659629, guid: 15057208e637a7849b395773a4045979, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f9f84bed817d2643987441b1d39ee4a,
+        type: 2}
+    - target: {fileID: 1591922349655453620, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591922349655453620, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591922349655453620, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: gravityForce
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9092426559857425384, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9092426559857425385, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f9f84bed817d2643987441b1d39ee4a,
+        type: 2}
     - target: {fileID: 9092426559857425388, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: m_LocalPosition.x
