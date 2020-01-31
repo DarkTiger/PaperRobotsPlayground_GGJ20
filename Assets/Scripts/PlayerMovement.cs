@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    float gravityForce;
+
+    Planet planet = null;
+
+
+    Rigidbody rigidBody;
+    
+
+    void Awake()
     {
-        
+        rigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        planet = FindObjectOfType<Planet>();
     }
+
+    void FixedUpdate()
+    {
+        Vector3 direction = (planet.transform.position - transform.position).normalized;
+        rigidBody.AddForce(direction * gravityForce, ForceMode.Acceleration);
+    }
+
 }
