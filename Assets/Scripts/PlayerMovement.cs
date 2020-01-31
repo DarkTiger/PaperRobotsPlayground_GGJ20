@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    float gravityForce;
-    [SerializeField]
-    float movementSpeed;
-    [SerializeField]
-    float rotationSpeed;
+    [SerializeField] int playerIndex;
+    [SerializeField] float gravityForce;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float rotationSpeed;
 
 
     Vector3 direction = new Vector3(0, 0, 0);
@@ -31,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float verticalMovement = Input.GetAxis("Vertical");
+        float horizontalMovement = Input.GetAxis("HorizontalP1");// + playerIndex.ToString());
+        float verticalMovement = Input.GetAxis("VerticalP1"); //+ playerIndex.ToString());
         Vector3 direction = (planet.transform.position - transform.position).normalized;
         rigidBody.AddForce(direction * gravityForce, ForceMode.Acceleration);
 
