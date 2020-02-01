@@ -29,8 +29,10 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        repair = 0;
-        lblHealth.GetComponent<Text>().text = "Life: " + health + "%";
+        repair = 100;
+        lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
+        lblRepair.GetComponent<Text>().text = "Repair:" + repair + "%";
+        imgCollectorObject.GetComponent<Image>().enabled = false;
     }
 
     public void Damage(int damage)
@@ -41,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         {
             Die();
         }
-        lblHealth.GetComponent<Text>().text = "Life: "+health+"%";
+        lblHealth.GetComponent<Text>().text = "Life:"+health+"%";
     }
 
     [ContextMenu("Die")]
@@ -49,12 +51,45 @@ public class PlayerStats : MonoBehaviour
     {
         Vector3 posTemp = transform.position;
         Respawn();
-        Instantiate(objectSpawn,posTemp,Quaternion.identity);
+        if (GameManager.objOnScene)
+        {
+            return;
+        }
+        else
+        {
+            Instantiate(objectSpawn, posTemp, Quaternion.identity);
+            GameManager.objOnScene = true;
+        }
     }
     void Respawn()
     {
         health = maxHealth;
-        lblHealth.GetComponent<Text>().text = "Life: " + health + "%";
+        lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
         transform.localPosition = Vector3.zero;
+        imgCollectorObject.GetComponent<Image>().enabled = false;
+    }
+
+    public void activeGear(bool active)
+    {
+        if (active)
+        {
+            imgCollectorObject.GetComponent<Image>().enabled = true;
+        }
+        else
+        {
+            imgCollectorObject.GetComponent<Image>().enabled = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        bool repairObject = imgCollectorObject.GetComponent<Image>().enabled;
+        if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
+        {
+            repair += 25;
+            lblRepair.GetComponent<Text>().text = "Repair:" + repair;
+            imgCollectorObject.GetComponent<Image>().enabled = false;
+            GameManager.objOnScene = false;
+        }
     }
 }

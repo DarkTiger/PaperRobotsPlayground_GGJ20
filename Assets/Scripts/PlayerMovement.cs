@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     Planet planet = null;
 
     Rigidbody rigidBody;
-    
+
 
     void Awake()
     {
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("JumpP"+playerIndex)&&isGrouded)
+        if (Input.GetButtonDown("JumpP" + playerIndex) && isGrouded)
         {
             rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrouded = false;
@@ -66,4 +66,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Gear"))
+        {
+            onPicked(other);
+        }
+    }
+    void onPicked(Collider other)
+    {
+        Destroy(other.gameObject);
+        GetComponent<PlayerStats>().activeGear(true);
+    }
 }
