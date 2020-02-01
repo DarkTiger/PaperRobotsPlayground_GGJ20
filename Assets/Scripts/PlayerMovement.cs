@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private int playerIndex;
 
     private bool isGrouded;
+    bool axesPress = false;
 
 
     Vector3 direction = new Vector3(0, 0, 0);
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         float horizontalMovement = Input.GetAxis("HorizontalP" + playerIndex.ToString());
+        float strifeMovement = Input.GetAxis("StrifeP" + playerIndex.ToString());
         float verticalMovement = Input.GetAxis("VerticalP" + playerIndex.ToString());
         Vector3 direction = (planet.transform.position - transform.position).normalized;
 
@@ -50,16 +52,24 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.AddTorque(transform.up * horizontalMovement * rotationSpeed, ForceMode.VelocityChange);
 
         rigidBody.AddForce(transform.forward * verticalMovement * movementSpeed, ForceMode.Impulse);
+        rigidBody.AddForce(-transform.right * strifeMovement * (movementSpeed/2), ForceMode.Impulse);
 
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("JumpP" + playerIndex) && isGrouded)
+        /*if (Input.GetButtonDown("JumpP" + playerIndex) && isGrouded)
         {
             rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrouded = false;
+        }*/
+        if ((Input.GetAxis("JumpP" + playerIndex)>0) && isGrouded && !axesPress)
+        {
+            axesPress = true;
+            rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            isGrouded = false;
         }
+        ReversePressAxe();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -118,5 +128,17 @@ public class PlayerMovement : MonoBehaviour
             playerStat.UpdateAmmoRemain(playerAttack.currentAmmo);
         }
         Destroy(other.gameObject);
+    }
+
+    void ReversePressAxe()
+    {
+        if (Input.GetAxis("JumpP" + playerIndex) > 1)
+        {
+            axesPress = true;
+        }
+        if (Input.GetAxis("JumpP" + playerIndex) == 0)
+        {
+            axesPress = false;
+        }
     }
 }
