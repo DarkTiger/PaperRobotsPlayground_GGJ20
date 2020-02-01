@@ -10,9 +10,14 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     Text lblRepair;
     [SerializeField]
+    Text lblAmmo;
+    [SerializeField]
     Image imgCollectorObject;
     [SerializeField]
+    Image imgWeapons;
+    [SerializeField]
     GameObject objectSpawn;
+    PlayerAttack playerAttack;
     public int playerIndex;
     public int health;
     public int maxHealth = 100;
@@ -28,10 +33,13 @@ public class PlayerStats : MonoBehaviour
     }
     void Start()
     {
+        playerAttack = GetComponent<PlayerAttack>();
+        UpdateAmmoRemain(playerAttack.currentAmmo);
         health = maxHealth;
         repair = 100;
         lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
         lblRepair.GetComponent<Text>().text = "Repair:" + repair + "%";
+        UpdateWeaponsHUD();
         imgCollectorObject.GetComponent<Image>().enabled = false;
     }
 
@@ -46,7 +54,6 @@ public class PlayerStats : MonoBehaviour
         lblHealth.GetComponent<Text>().text = "Life:"+health+"%";
     }
 
-    [ContextMenu("Die")]
     void Die()
     {
         Vector3 posTemp = transform.position;
@@ -91,5 +98,25 @@ public class PlayerStats : MonoBehaviour
             imgCollectorObject.GetComponent<Image>().enabled = false;
             GameManager.objOnScene = false;
         }
+    }
+
+    public void UpdateWeaponsHUD()
+    {
+        imgWeapons.sprite = playerAttack.currentBullet.weaponSprite;
+    }
+
+    public void UpdateAmmoRemain(int ammoRemain)
+    {
+        string ammoRemainString = ammoRemain.ToString();
+        if (playerAttack.currentBullet.type == Bullet.Type.Default)
+        {
+            ammoRemainString = "∞";
+            lblAmmo.text = "Ammo:" + ammoRemainString + "/" + ammoRemainString;
+        }
+        else
+        {
+            lblAmmo.text = "Ammo:" + ammoRemainString + "/" + playerAttack.currentBullet.startAmmo;
+        }
+        UpdateWeaponsHUD();
     }
 }

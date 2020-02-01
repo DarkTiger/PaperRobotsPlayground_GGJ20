@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] Bullet defaultBullet;
-    [SerializeField] Bullet currentBullet;
+    public Bullet currentBullet;
     public int currentAmmo { get; private set;} = 0;
     int playerIndex;
     float lastFire = 0;
@@ -31,11 +31,13 @@ public class PlayerAttack : MonoBehaviour
 
                     lastFire = Time.time;
                     currentAmmo--;
+                    
 
                     if (currentAmmo == 0)
                     {
                         currentBullet = defaultBullet;
                     }
+                    GetComponent<PlayerStats>().UpdateAmmoRemain(currentAmmo);
                 }
             }
             else
@@ -58,11 +60,13 @@ public class PlayerAttack : MonoBehaviour
                     
                     lastFire = Time.time;
                     currentAmmo--;
-
+                    
                     if (currentAmmo == 0)
                     {
                         currentBullet = defaultBullet;
                     }
+                    GetComponent<PlayerStats>().UpdateAmmoRemain(currentAmmo);
+
                 }
             }
         }

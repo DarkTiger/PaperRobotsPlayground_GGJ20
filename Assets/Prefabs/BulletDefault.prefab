@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  weaponSprite: {fileID: 21300000, guid: 75399bb1c3599c74b9b76403023323f3, type: 3}
   gravityForce: 12.5
-  persistence: 30
   damage: 10
   startAmmo: 1
   force: 25

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8291445410975289277}
   - component: {fileID: 5688920271285691444}
   - component: {fileID: 8574501884061813672}
+  - component: {fileID: 77497584}
   m_Layer: 9
   m_Name: PlayerP2
   m_TagString: Untagged
@@ -146,7 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lblHealth: {fileID: 0}
   lblRepair: {fileID: 0}
+  lblAmmo: {fileID: 0}
   imgCollectorObject: {fileID: 0}
+  imgWeapons: {fileID: 0}
   objectSpawn: {fileID: 5363137610698292739, guid: 55fe4d188b042f448aa9a87690feb256,
     type: 3}
   playerIndex: 2
@@ -165,7 +168,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c026d424420d44fa7cd04df7977a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5134941986888811608, guid: 86f0cd9385c66304c8110d3473ff2782, type: 3}
+  defaultBullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981,
+    type: 3}
+  currentBullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981,
+    type: 3}
+--- !u!114 &77497584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116721912917898217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbc4b11b9ee6764da6d7215452ff4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paused: {fileID: 0}
 --- !u!1 &3690747869895661243
 GameObject:
   m_ObjectHideFlags: 0
