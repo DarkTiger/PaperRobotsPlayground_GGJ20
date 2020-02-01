@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-
+        if (GameManager.isPaused) { return; }
         if (Time.time > lastFire + bullet.fireDelay)
         {
             if (bullet.type == Bullet.Type.SMG)

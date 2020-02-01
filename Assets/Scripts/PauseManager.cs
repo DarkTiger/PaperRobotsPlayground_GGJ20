@@ -6,13 +6,15 @@ public class PauseManager : MonoBehaviour
 {
     bool isPaused;
 
+    public GameObject paused;
+
     private void Start()
     {
         isPaused = false;
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetButtonDown("Pause"))
         {
             //attivare o disattivare la pausa
             ChangePauseStatus();
@@ -30,11 +32,14 @@ public class PauseManager : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
+            GameManager.isPaused = true;
         }
         else
         {
             Time.timeScale = 1;
+            GameManager.isPaused = false;
         }
+        paused.SetActive(isPaused);
+        
     }
-
 }
