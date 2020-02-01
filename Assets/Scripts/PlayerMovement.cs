@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] int playerIndex;
     [SerializeField] float gravityForce;
     [SerializeField] float jumpForce;
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationSpeed;
+
+    private int playerIndex;
 
     private bool isGrouded;
 
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         planet = FindObjectOfType<Planet>();
         isGrouded = true;
+        playerIndex = GetComponent<PlayerStats>().playerIndex;
     }
 
     void FixedUpdate()
