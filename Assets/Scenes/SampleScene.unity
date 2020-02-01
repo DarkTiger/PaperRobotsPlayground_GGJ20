@@ -194,6 +194,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 133659627, guid: 15057208e637a7849b395773a4045979, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 133659629, guid: 15057208e637a7849b395773a4045979, type: 3}
       propertyPath: m_Material
       value: 
@@ -227,12 +231,17 @@ PrefabInstance:
     - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: gravityForce
-      value: 15
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: playerIndex
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: jumpForce
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5772711447307987196, guid: 15057208e637a7849b395773a4045979,
         type: 3}
@@ -248,6 +257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092426559857425384, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9092426559857425385, guid: 15057208e637a7849b395773a4045979,
         type: 3}
@@ -609,6 +623,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 133659627, guid: 15057208e637a7849b395773a4045979, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 133659629, guid: 15057208e637a7849b395773a4045979, type: 3}
       propertyPath: m_Material
       value: 
@@ -642,12 +660,17 @@ PrefabInstance:
     - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: gravityForce
-      value: 15
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
         type: 3}
       propertyPath: playerIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774000159036327868, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: jumpForce
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5772711447307987196, guid: 15057208e637a7849b395773a4045979,
         type: 3}
@@ -663,6 +686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092426559857425384, guid: 15057208e637a7849b395773a4045979,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9092426559857425385, guid: 15057208e637a7849b395773a4045979,
         type: 3}
