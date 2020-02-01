@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] Bullet defaultBullet;
+    [SerializeField] Bullet[] bullets;
     public Bullet currentBullet;
     public int currentAmmo { get; private set;} = 0;
     int playerIndex;

@@ -170,6 +170,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultBullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981,
     type: 3}
+  bullets:
+  - {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981, type: 3}
+  - {fileID: 5134941986888811608, guid: 86f0cd9385c66304c8110d3473ff2782, type: 3}
+  - {fileID: 5134941986888811608, guid: 5071448b3fd242f47a4a4a9ef0a3a9b5, type: 3}
+  - {fileID: 5134941986888811608, guid: 53360683277250341bd8d9e2ce84e72d, type: 3}
   currentBullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981,
     type: 3}
 --- !u!114 &1322336423
