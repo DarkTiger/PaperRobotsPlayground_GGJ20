@@ -2,12 +2,17 @@
 
 public class Bullet : MonoBehaviour
 {
+    public enum Type { Default, Shotgun, SMG, Sniper }
+    public Type type = Type.Default;
     [SerializeField] float gravityForce = 1;
     [SerializeField] float persistence = 30;
     public int damage = 1;
+    public int startAmmo = 1;
     public float force = 1;
+    public float fireDelay = 1;
     Planet planet;
     Rigidbody rigidbody;
+
 
     private void Awake()
     {
@@ -17,7 +22,8 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         planet = FindObjectOfType<Planet>();
-        Destroy(gameObject, persistence);
+        //Destroy(gameObject, persistence);
+        rigidbody.AddForce(transform.forward * force, ForceMode.VelocityChange);
     }
 
     private void FixedUpdate()

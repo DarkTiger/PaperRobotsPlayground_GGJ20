@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 360406013487268543}
   - component: {fileID: 5134941986888811608}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 08c94e4b7010a24458db0987e0da03e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,7 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20635fbe5628e24ea203a3a23b6de17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   gravityForce: 12.5
   persistence: 30
   damage: 10
+  startAmmo: 1
   force: 25
+  fireDelay: 0.5
