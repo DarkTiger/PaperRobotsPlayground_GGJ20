@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] int damage = 1;
+    [SerializeField] Bullet bullet;   
     int playerIndex;
 
     private void Start()
@@ -16,11 +16,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetButtonDown("FireP" + playerIndex))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, LayerMask.GetMask("Player")))
-            {
-                hit.collider.GetComponent<PlayerStats>().Damage(damage);
-            }
+            Rigidbody bulletRB = Instantiate(bullet.gameObject, transform.position + (transform.forward), transform.rotation).GetComponent<Rigidbody>();
+            bulletRB.AddForce(transform.forward * bullet.force, ForceMode.VelocityChange);
         }
     }
 }

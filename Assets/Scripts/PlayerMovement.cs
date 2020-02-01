@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("JumpP"+playerIndex)&&isGrouded)
         {
-            Debug.Log("Player Jump : " + playerIndex);
             rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrouded = false;
         }
