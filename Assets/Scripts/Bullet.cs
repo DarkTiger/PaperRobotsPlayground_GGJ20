@@ -4,14 +4,17 @@ public class Bullet : MonoBehaviour
 {
     public enum Type { Default, Shotgun, SMG, Sniper }
     public Type type = Type.Default;
+    public Sprite weaponSprite = null;
     [SerializeField] float gravityForce = 1;
-    [SerializeField] float persistence = 30;
+    //[SerializeField] float persistence = 30;
     public int damage = 1;
     public int startAmmo = 1;
     public float force = 1;
     public float fireDelay = 1;
     Planet planet;
     Rigidbody rigidbody;
+    float currentLifeTime = 0;
+    public PlayerAttack owner { get; set; } = null;
 
 
     private void Awake()
@@ -22,8 +25,21 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         planet = FindObjectOfType<Planet>();
-        //Destroy(gameObject, persistence);
-        rigidbody.AddForce(transform.forward * force, ForceMode.VelocityChange);
+        Vector3 randomOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.05f, 0.05f), 0);
+        rigidbody.AddForce((transform.forward + (type == Type.Shotgun? transform.TransformDirection(randomOffset) : Vector3.zero)) * force, ForceMode.VelocityChange);
+    }
+
+    private void Update()
+    {
+        currentLifeTime += Time.deltaTime;
+
+        if (type == Type.Shotgun)
+        {
+            if (currentLifeTime > 0.1f)
+            {
+                GetComponent<SphereCollider>().enabled = true;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -41,6 +57,17 @@ public class Bullet : MonoBehaviour
             playerStatus.Damage(damage);
         }
 
-        Destroy(gameObject);
+        if (currentLifeTime > 1f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.GetComponent<Planet>())
+        {
+            Destroy(gameObject);
+        }
     }
 }

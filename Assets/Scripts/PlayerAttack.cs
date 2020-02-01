@@ -4,51 +4,65 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] Bullet bullet;   
+    [SerializeField] Bullet defaultBullet;
+    [SerializeField] Bullet currentBullet;
+    public int currentAmmo { get; private set;} = 0;
     int playerIndex;
-    int currentAmmo = 0;
     float lastFire = 0;
 
 
     private void Start()
     {
         playerIndex = GetComponent<PlayerStats>().playerIndex;
-        currentAmmo = bullet.startAmmo;
+        currentAmmo = currentBullet.startAmmo;
     }
 
     private void Update()
     {
         if (GameManager.isPaused) { return; }
-        if (Time.time > lastFire + bullet.fireDelay)
+        if (Time.time > lastFire + currentBullet.fireDelay)
         {
-            if (bullet.type == Bullet.Type.SMG)
+            if (currentBullet.type == Bullet.Type.SMG)
             {
                 if (currentAmmo > 0 && Input.GetButton("FireP" + playerIndex))
                 {
-                    Instantiate(bullet.gameObject, transform.position + (transform.forward), transform.rotation);
+                    Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward), transform.rotation).GetComponent<Bullet>();
+                    bullet.owner = this;
+
                     lastFire = Time.time;
                     currentAmmo--;
+
+                    if (currentAmmo == 0)
+                    {
+                        currentBullet = defaultBullet;
+                    }
                 }
             }
             else
             {
-                if ((currentAmmo > 0 || bullet.type == Bullet.Type.Default) && Input.GetButtonDown("FireP" + playerIndex))
+                if ((currentAmmo > 0 || currentBullet.type == Bullet.Type.Default) && Input.GetButtonDown("FireP" + playerIndex))
                 {
-                    if (bullet.type == Bullet.Type.Default || bullet.type == Bullet.Type.Sniper)
+                    if (currentBullet.type == Bullet.Type.Default || currentBullet.type == Bullet.Type.Sniper)
                     {
-                        Instantiate(bullet.gameObject, transform.position + (transform.forward), transform.rotation);
+                        Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward*1.5f), transform.rotation).GetComponent<Bullet>();
+                        bullet.owner = this;
                     }
                     else
                     {
                         for (int i = 0; i < 10; i++)
                         {
-                            Vector3 randomOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
-                            Instantiate(bullet.gameObject, transform.position + (transform.forward) + randomOffset, transform.rotation);
+                            Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward), transform.rotation).GetComponent<Bullet>();
+                            bullet.owner = this;
                         }
                     }
                     
                     lastFire = Time.time;
                     currentAmmo--;
+
+                    if (currentAmmo == 0)
+                    {
+                        currentBullet = defaultBullet;
+                    }
                 }
             }
         }
