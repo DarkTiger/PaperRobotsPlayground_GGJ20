@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] Bullet defaultBullet;
-    [SerializeField] Bullet[] bullets;
+    public Bullet[] bullets;
     public Bullet currentBullet;
-    public int currentAmmo { get; private set;} = 0;
+    public int currentAmmo { get; set;} = 0;
     int playerIndex;
     float lastFire = 0;
 
@@ -71,5 +71,9 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+    }
+    public void changeWeaponsAmmo(int i)
+    {
+        currentBullet = GetComponent<PlayerAttack>().bullets[i];
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static bool objOnScene = false;
+    public static bool objOnPlayer = false;
     public static bool isPaused = false;// Start is called before the first frame update
     void Start()
     {

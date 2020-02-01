@@ -36,7 +36,7 @@ public class PlayerStats : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         UpdateAmmoRemain(playerAttack.currentAmmo);
         health = maxHealth;
-        repair = 100;
+        repair = 0;
         lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
         lblRepair.GetComponent<Text>().text = "Repair:" + repair + "%";
         UpdateWeaponsHUD();
@@ -49,12 +49,12 @@ public class PlayerStats : MonoBehaviour
         health -= damage;
         if (health<=0)
         {
-            Die();
+            Die(1);
         }
         lblHealth.GetComponent<Text>().text = "Life:"+health+"%";
     }
 
-    void Die()
+    void Die(int i)
     {
         Vector3 posTemp = transform.position;
         Respawn();

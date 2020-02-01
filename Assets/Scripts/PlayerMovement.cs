@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationSpeed;
 
+    PlayerAttack playerAttack;
+    PlayerStats playerStat;
     private int playerIndex;
 
     private bool isGrouded;
@@ -28,9 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playerAttack = GetComponent<PlayerAttack>();
+        playerStat = GetComponent<PlayerStats>();
         planet = FindObjectOfType<Planet>();
         isGrouded = true;
-        playerIndex = GetComponent<PlayerStats>().playerIndex;
+        playerIndex = playerStat.playerIndex;
     }
 
     void FixedUpdate()
@@ -72,10 +76,51 @@ public class PlayerMovement : MonoBehaviour
         {
             onPicked(other);
         }
+        if (other.CompareTag("Sniper"))
+        {
+            onPicked(other);
+        }
+        if (other.CompareTag("Shotgun"))
+        {
+            onPicked(other);
+        }
+        if (other.CompareTag("SMG"))
+        {
+            onPicked(other);
+        }
     }
     void onPicked(Collider other)
     {
+        
+        if (other.CompareTag("Gear"))
+        {
+            playerStat.activeGear(true);
+        }
+        else
+        {
+            int i = 0;
+            if (other.CompareTag("Sniper"))
+            {
+                i = 3;
+                Debug.Log("Sniper");
+                playerAttack.currentBullet = playerAttack.bullets[3];
+            }
+            if (other.CompareTag("Shotgun"))
+            {
+                i = 1;
+                Debug.Log("Shotgun");
+                playerAttack.currentBullet = playerAttack.bullets[1];
+            }
+            if (other.CompareTag("SMG"))
+            {
+                i = 2;
+                Debug.Log("SMG");
+                playerAttack.currentBullet = playerAttack.bullets[2];
+            }
+            playerAttack.currentAmmo = playerAttack.currentBullet.startAmmo;
+            playerStat.UpdateWeaponsHUD();
+            playerStat.UpdateAmmoRemain(playerAttack.currentAmmo);
+        }
         Destroy(other.gameObject);
-        GetComponent<PlayerStats>().activeGear(true);
     }
 }
