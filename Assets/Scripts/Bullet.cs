@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     Planet planet;
     Rigidbody rigidbody;
     float currentLifeTime = 0;
-    public PlayerAttack owner { get; set; } = null;
+    public PlayerStats owner { get; set; } = null;
 
 
     private void Awake()
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         PlayerStats playerStatus;
         if (playerStatus = collision.collider.GetComponent<PlayerStats>())
         {
-            playerStatus.Damage(damage);
+            playerStatus.Damage(damage, this);
         }
 
         if (currentLifeTime > 1f)

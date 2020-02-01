@@ -90,8 +90,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     void onPicked(Collider other)
-    {
-        
+    {       
         if (other.CompareTag("Gear"))
         {
             playerStat.activeGear(true);
@@ -102,19 +101,16 @@ public class PlayerMovement : MonoBehaviour
             if (other.CompareTag("Sniper"))
             {
                 i = 3;
-                Debug.Log("Sniper");
                 playerAttack.currentBullet = playerAttack.bullets[3];
             }
             if (other.CompareTag("Shotgun"))
             {
                 i = 1;
-                Debug.Log("Shotgun");
                 playerAttack.currentBullet = playerAttack.bullets[1];
             }
             if (other.CompareTag("SMG"))
             {
                 i = 2;
-                Debug.Log("SMG");
                 playerAttack.currentBullet = playerAttack.bullets[2];
             }
             playerAttack.currentAmmo = playerAttack.currentBullet.startAmmo;

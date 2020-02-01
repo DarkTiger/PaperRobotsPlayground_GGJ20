@@ -10,11 +10,11 @@ public class Planet : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnEnvObjects());
+        //StartCoroutine(SpawnEnvObjects());
         StartCoroutine(SpawnBonusItems());
     }
 
-    IEnumerator SpawnEnvObjects()
+    /*IEnumerator SpawnEnvObjects()
     {
         float currentCount = 0;
 
@@ -36,7 +36,7 @@ public class Planet : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
 
     IEnumerator SpawnBonusItems()
     {

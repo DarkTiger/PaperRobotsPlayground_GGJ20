@@ -43,31 +43,34 @@ public class PlayerStats : MonoBehaviour
         imgCollectorObject.GetComponent<Image>().enabled = false;
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, Bullet bullet)
     {
         if (isDead) { return; }
         health -= damage;
         if (health<=0)
         {
-            Die(1);
+            Die(1, bullet);
         }
         lblHealth.GetComponent<Text>().text = "Life:"+health+"%";
     }
 
-    void Die(int i)
+    void Die(int i, Bullet bullet)
     {
-        Vector3 posTemp = transform.position;
+        Vector3 posTemp = transform.position + transform.up;
         Respawn();
-        if (GameManager.objOnScene)
+
+        if (!GameManager.objOnScene && GameManager.objOwner != this && bullet.owner == this) { return; }
+
+        if (!GameManager.objOnScene && ((GameManager.objOwner == this) || GameManager.objOwner == null))
         {
-            return;
-        }
-        else
-        {
-            Instantiate(objectSpawn, posTemp, Quaternion.identity);
+            Vector3 planetPos = FindObjectOfType<Planet>().transform.position;
+            Transform objectInstantiated = Instantiate(objectSpawn, posTemp, Quaternion.identity).transform;
+            objectInstantiated.up = (objectInstantiated.position - planetPos).normalized;
             GameManager.objOnScene = true;
+            GameManager.objOwner = null;
         }
     }
+
     void Respawn()
     {
         health = maxHealth;
@@ -86,6 +89,9 @@ public class PlayerStats : MonoBehaviour
         {
             imgCollectorObject.GetComponent<Image>().enabled = false;
         }
+
+        GameManager.objOnScene = false;
+        GameManager.objOwner = this;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -97,6 +103,7 @@ public class PlayerStats : MonoBehaviour
             lblRepair.GetComponent<Text>().text = "Repair:" + repair;
             imgCollectorObject.GetComponent<Image>().enabled = false;
             GameManager.objOnScene = false;
+            GameManager.objOwner = null;
         }
     }
 

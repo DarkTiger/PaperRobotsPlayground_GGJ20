@@ -27,8 +27,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (currentAmmo > 0 && Input.GetButton("FireP" + playerIndex))
                 {
-                    Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward), transform.rotation).GetComponent<Bullet>();
-                    bullet.owner = this;
+                    Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + transform.forward + transform.up, transform.rotation).GetComponent<Bullet>();
+                    bullet.owner = GetComponent<PlayerStats>();
 
                     lastFire = Time.time;
                     currentAmmo--;
@@ -47,15 +47,15 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (currentBullet.type == Bullet.Type.Default || currentBullet.type == Bullet.Type.Sniper)
                     {
-                        Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward*1.5f), transform.rotation).GetComponent<Bullet>();
-                        bullet.owner = this;
+                        Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward*1.5f) + transform.up, transform.rotation).GetComponent<Bullet>();
+                        bullet.owner = GetComponent<PlayerStats>();
                     }
                     else
                     {
                         for (int i = 0; i < 10; i++)
                         {
-                            Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward), transform.rotation).GetComponent<Bullet>();
-                            bullet.owner = this;
+                            Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + transform.forward + transform.up, transform.rotation).GetComponent<Bullet>();
+                            bullet.owner = GetComponent<PlayerStats>();
                         }
                     }
                     
