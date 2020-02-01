@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c026d424420d44fa7cd04df7977a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981, type: 3}
+  bullet: {fileID: 5134941986888811608, guid: 86f0cd9385c66304c8110d3473ff2782, type: 3}
 --- !u!1 &3690747869895661243
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4796041737713680499}
   m_Layer: 0
   m_Name: start.003
-  m_TagString: Untagged
+  m_TagString: ShipP2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 8872136717872430043}
   m_Layer: 0
   m_Name: astronave.003
-  m_TagString: Untagged
+  m_TagString: ShipP2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

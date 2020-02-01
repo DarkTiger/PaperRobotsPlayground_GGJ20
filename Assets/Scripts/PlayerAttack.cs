@@ -42,7 +42,8 @@ public class PlayerAttack : MonoBehaviour
                     {
                         for (int i = 0; i < 10; i++)
                         {
-                            Instantiate(bullet.gameObject, transform.position + (transform.forward), transform.rotation);
+                            Vector3 randomOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+                            Instantiate(bullet.gameObject, transform.position + (transform.forward) + randomOffset, transform.rotation);
                         }
                     }
                     

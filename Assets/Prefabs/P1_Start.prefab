@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6063586922741003758}
   - component: {fileID: 7621228966641622631}
   - component: {fileID: 7481798259615729746}
+  - component: {fileID: 1322336423}
   m_Layer: 9
   m_Name: PlayerP1
   m_TagString: Untagged
@@ -166,6 +167,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5134941986888811608, guid: eb980b697df34534aa219b9a9c6f3981, type: 3}
+--- !u!114 &1322336423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898401694767008186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbc4b11b9ee6764da6d7215452ff4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2029614750073133850
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +319,7 @@ GameObject:
   - component: {fileID: 4020309218456146254}
   m_Layer: 0
   m_Name: start.002
-  m_TagString: Untagged
+  m_TagString: ShipP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,7 +641,7 @@ GameObject:
   - component: {fileID: 3479646781978995384}
   m_Layer: 0
   m_Name: astronave.000
-  m_TagString: Untagged
+  m_TagString: ShipP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
