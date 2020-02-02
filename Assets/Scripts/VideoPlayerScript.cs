@@ -14,6 +14,7 @@ public class VideoPlayerScript : MonoBehaviour
 
     private IEnumerator Start()
     {
+        Cursor.visible = false;
         yield return new WaitForSeconds(1);
 
         while(true)

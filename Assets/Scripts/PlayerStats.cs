@@ -170,7 +170,7 @@ public class PlayerStats : MonoBehaviour
         }
         UpdateWeaponsHUD();
     }
-    [ContextMenu("Victory")]
+    
     void Victory()
     {
         GetComponent<MeshRenderer>().enabled = false;

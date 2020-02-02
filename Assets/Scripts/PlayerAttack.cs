@@ -13,10 +13,12 @@ public class PlayerAttack : MonoBehaviour
     bool axesPress = false;
     Rigidbody rigidbody;
     PlayerAudio playerAudio;
+    PlayerStats playerStats;
 
 
     private void Awake()
     {
+        playerStats = GetComponent<PlayerStats>();
         playerAudio = GetComponent<PlayerAudio>();
         rigidbody = GetComponent<Rigidbody>();
         playerIndex = GetComponent<PlayerStats>().playerIndex;
@@ -25,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.isPaused) { return; }
+        if (GameManager.isPaused || playerStats.isDead) { return; }
         if (Time.time > lastFire + currentBullet.fireDelay)
         {
             if (currentBullet.type == Bullet.Type.SMG)
