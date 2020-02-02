@@ -5,25 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField]
-    Text lblHealth;
-    [SerializeField]
-    Text lblRepair;
-    [SerializeField]
-    Text lblAmmo;
-    [SerializeField]
-    Image imgCollectorObject;
-    [SerializeField]
-    Image imgWeapons;
-    [SerializeField]
-    GameObject objectSpawn;
-    PlayerAttack playerAttack;
+    [SerializeField] Text lblHealth;
+    [SerializeField] Text lblRepair;
+    [SerializeField] Text lblAmmo;
+    [SerializeField] Image imgCollectorObject;
+    [SerializeField] Image imgWeapons;
+    [SerializeField] GameObject objectSpawn;
+    [SerializeField] GameObject[] shipModelVariants;
+    
     public int playerIndex;
     public int health;
     public int maxHealth = 100;
     public int repair;
     
-
+    PlayerAttack playerAttack;
+    int currentShipVariant = 0;
 
 
     bool isDead
@@ -105,6 +101,22 @@ public class PlayerStats : MonoBehaviour
         if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
         {
             repair += 25;
+                       
+
+            switch (repair)
+            {
+                case 50:
+                    currentShipVariant = 1;
+                    shipModelVariants[0].SetActive(false);
+                    shipModelVariants[1].SetActive(true);
+                    break;
+                case 100:
+                    currentShipVariant = 2;
+                    shipModelVariants[1].SetActive(false);
+                    shipModelVariants[2].SetActive(true);
+                    break;
+            }
+
             lblRepair.GetComponent<Text>().text = "Repair: " + repair + "%";
             imgCollectorObject.GetComponent<Image>().enabled = false;
             GameManager.objOnScene = false;
