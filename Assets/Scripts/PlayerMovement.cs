@@ -40,29 +40,26 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontalMovement = Input.GetAxis("HorizontalP" + playerIndex.ToString());
-        float strifeMovement = Input.GetAxis("StrifeP" + playerIndex.ToString());
-        float verticalMovement = Input.GetAxis("VerticalP" + playerIndex.ToString());
-        Vector3 direction = (planet.transform.position - transform.position).normalized;
+        if (!playerStat.isDead)
+        {
+            float horizontalMovement = Input.GetAxis("HorizontalP" + playerIndex.ToString());
+            float strifeMovement = Input.GetAxis("StrifeP" + playerIndex.ToString());
+            float verticalMovement = Input.GetAxis("VerticalP" + playerIndex.ToString());
+            Vector3 direction = (planet.transform.position - transform.position).normalized;
 
-        transform.rotation = Quaternion.FromToRotation(transform.up, -direction) * transform.rotation; //mantiene il player orientato verso la superfice
+            transform.rotation = Quaternion.FromToRotation(transform.up, -direction) * transform.rotation; //mantiene il player orientato verso la superfice
 
-        rigidBody.AddForce(direction * gravityForce, ForceMode.Acceleration);
+            rigidBody.AddForce(direction * gravityForce, ForceMode.Acceleration);
 
-        rigidBody.AddTorque(transform.up * horizontalMovement * rotationSpeed, ForceMode.VelocityChange);
+            rigidBody.AddTorque(transform.up * horizontalMovement * rotationSpeed, ForceMode.VelocityChange);
 
-        rigidBody.AddForce(transform.forward * verticalMovement * movementSpeed, ForceMode.Impulse);
-        rigidBody.AddForce(-transform.right * strifeMovement * (movementSpeed/2), ForceMode.Impulse);
-
+            rigidBody.AddForce(transform.forward * verticalMovement * movementSpeed, ForceMode.Impulse);
+            rigidBody.AddForce(-transform.right * strifeMovement * (movementSpeed / 2), ForceMode.Impulse);
+        }
     }
 
     private void Update()
     {
-        /*if (Input.GetButtonDown("JumpP" + playerIndex) && isGrouded)
-        {
-            rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            isGrouded = false;
-        }*/
         if ((Input.GetAxis("JumpP" + playerIndex)>0) && isGrouded && !axesPress)
         {
             axesPress = true;
@@ -82,21 +79,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Gear"))
+        if (!playerStat.isDead)
         {
-            onPicked(other);
-        }
-        if (other.CompareTag("Sniper"))
-        {
-            onPicked(other);
-        }
-        if (other.CompareTag("Shotgun"))
-        {
-            onPicked(other);
-        }
-        if (other.CompareTag("SMG"))
-        {
-            onPicked(other);
+            if (other.CompareTag("Gear"))
+            {
+                onPicked(other);
+            }
+            if (other.CompareTag("Sniper"))
+            {
+                onPicked(other);
+            }
+            if (other.CompareTag("Shotgun"))
+            {
+                onPicked(other);
+            }
+            if (other.CompareTag("SMG"))
+            {
+                onPicked(other);
+            }
         }
     }
     void onPicked(Collider other)

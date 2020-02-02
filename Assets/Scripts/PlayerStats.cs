@@ -17,12 +17,12 @@ public class PlayerStats : MonoBehaviour
     public int health;
     public int maxHealth = 100;
     public int repair;
-    
+
     PlayerAttack playerAttack;
     int currentShipVariant = 0;
 
 
-    bool isDead
+    public bool isDead
     {
         get
         {
@@ -54,8 +54,9 @@ public class PlayerStats : MonoBehaviour
 
     void Die(int i, Bullet bullet)
     {
-        Vector3 posTemp = transform.position + transform.up;
-        Respawn();
+        Vector3 posTemp = transform.position + transform.up;      
+        
+        StartCoroutine(Respawn());
 
         if (!GameManager.objOnScene && GameManager.objOwner != this && bullet.owner == this) { return; }
 
@@ -69,8 +70,13 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void Respawn()
+    IEnumerator Respawn()
     {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        yield return new WaitForSeconds(3f);
+        
         health = maxHealth;
         lblHealth.GetComponent<Text>().text = "Life: " + health + "%";
         transform.localPosition = Vector3.zero;
@@ -78,6 +84,9 @@ public class PlayerStats : MonoBehaviour
         playerAttack.currentBullet = playerAttack.defaultBullet;
         UpdateAmmoRemain(0);
         UpdateWeaponsHUD();
+
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
     }
 
     public void activeGear(bool active)
@@ -100,8 +109,7 @@ public class PlayerStats : MonoBehaviour
         bool repairObject = imgCollectorObject.GetComponent<Image>().enabled;
         if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
         {
-            repair += 25;
-                       
+            repair += 25;                    
 
             switch (repair)
             {

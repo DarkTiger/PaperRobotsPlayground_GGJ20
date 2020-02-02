@@ -6,15 +6,5 @@ public class GameManager : MonoBehaviour
 {
     public static bool objOnScene = false;
     public static PlayerStats objOwner = null;
-    public static bool isPaused = false;// Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static bool isPaused = false;
 }
