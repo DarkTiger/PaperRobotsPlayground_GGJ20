@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Image imgWeapons;
     [SerializeField] GameObject objectSpawn;
     [SerializeField] GameObject[] shipModelVariants;
+    [SerializeField] GameObject[] victory;
     
     public int playerIndex;
     public int health;
@@ -20,6 +21,8 @@ public class PlayerStats : MonoBehaviour
 
     PlayerAttack playerAttack;
     int currentShipVariant = 0;
+
+    public float waitTime = 1f;
 
 
     public bool isDead
@@ -151,4 +154,16 @@ public class PlayerStats : MonoBehaviour
         }
         UpdateWeaponsHUD();
     }
+    [ContextMenu("Victory")]
+    void Victory()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
+        //StartCoroutine(VictoryCoroutine());
+    }
+
+    /*IEnumerator VictoryCoroutine()
+    {
+        yield return new WaitForSeconds(waitTime);
+    }*/
 }
