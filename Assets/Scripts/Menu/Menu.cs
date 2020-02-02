@@ -12,9 +12,12 @@ public class Menu : MonoBehaviour
     GameObject imgMenu;
     [SerializeField]
     GameObject imgRules;
+    [SerializeField]
+    GameObject imgCredits;
 
     bool selectAxis = false;
     bool imgR = false;
+    bool credR = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,75 +32,87 @@ public class Menu : MonoBehaviour
     {
         if (imgR)
         {
-            ;
             if (Input.GetButton("Continue"))
             {
                 //Debug.Log(Input.GetButton("Select"));
                 SceneManager.LoadScene(1);
             }
         }
-        float tmpP1 = Input.GetAxis("VerticalP1");
-        float tmpP2 = Input.GetAxis("VerticalP2");
-        if (Input.GetAxis("VerticalP1") != 0 && Input.GetAxis("VerticalP2") != 0)
+        if (credR)
         {
-            ResetAxes(selectAxis);
+            if (Input.GetButton("Continue"))
+            {
+                imgCredits.SetActive(false);
+                credR = false;
+            }
         }
-        if (button[0].GetComponent<Image>().color == Color.green)
+        else
         {
-            if ((tmpP1 <0 || tmpP2 <0) && !selectAxis)
+            float tmpP1 = Input.GetAxis("VerticalP1");
+            float tmpP2 = Input.GetAxis("VerticalP2");
+            if (Input.GetAxis("VerticalP1") != 0 && Input.GetAxis("VerticalP2") != 0)
             {
-                button[0].GetComponent <Image>().color = Color.white;
-                button[1].GetComponent<Image>().color = Color.green;
+                ResetAxes(selectAxis);
             }
-            selectAxis = true;
-            if (Input.GetButton("Select"))
+            if (button[0].GetComponent<Image>().color == Color.green)
             {
-                //inserire panel regole
-                imgMenu.SetActive(false);
-                imgRules.SetActive(true);
-                imgR = true;
-                //Debug.Log(Input.GetButton("Select"));
+                if ((tmpP1 < 0 || tmpP2 < 0) && !selectAxis)
+                {
+                    button[0].GetComponent<Image>().color = Color.white;
+                    button[1].GetComponent<Image>().color = Color.green;
+                }
+                selectAxis = true;
+                if (Input.GetButton("Select"))
+                {
+                    imgMenu.SetActive(false);
+                    imgRules.SetActive(true);
+                    imgR = true;
+                    //Debug.Log(Input.GetButton("Select"));
+                }
+                ResetAxes(selectAxis);
+                //Debug.Log("Button 0");
             }
-            ResetAxes(selectAxis);
-            //Debug.Log("Button 0");
-        }
-        if (button[1].GetComponent<Image>().color == Color.green)
-        {
-            if ((tmpP1 < 0 || tmpP2 < 0) && !selectAxis)
+            if (button[1].GetComponent<Image>().color == Color.green)
             {
-                button[1].GetComponent<Image>().color = Color.white;
-                button[2].GetComponent<Image>().color = Color.green;
-            }
-            if ((tmpP1 > 0 || tmpP2 > 0) && !selectAxis)
-            {
-                button[1].GetComponent<Image>().color = Color.white;
-                button[0].GetComponent<Image>().color = Color.green;
-            }
-            selectAxis = true;
-            if (Input.GetButton("Select"))
-            {
-                //inserire pannello crediti
-                Debug.Log("Credits");
-            }
-            ResetAxes(selectAxis);
-            //Debug.Log("Button 1");
+                if ((tmpP1 < 0 || tmpP2 < 0) && !selectAxis)
+                {
+                    button[1].GetComponent<Image>().color = Color.white;
+                    button[2].GetComponent<Image>().color = Color.green;
+                }
+                if ((tmpP1 > 0 || tmpP2 > 0) && !selectAxis)
+                {
+                    button[1].GetComponent<Image>().color = Color.white;
+                    button[0].GetComponent<Image>().color = Color.green;
+                }
+                selectAxis = true;
+                if (Input.GetButton("Select"))
+                {
+                    imgCredits.SetActive(true);
+                    credR = true;
+                    //inserire pannello crediti
+                    Debug.Log("Credits");
+                }
+                ResetAxes(selectAxis);
+                //Debug.Log("Button 1");
 
-        }
-        if (button[2].GetComponent<Image>().color == Color.green)
-        {
-            if (tmpP1 > 0 || tmpP2 > 0 && !selectAxis)
-            {
-                button[2].GetComponent<Image>().color = Color.white;
-                button[1].GetComponent<Image>().color = Color.green;
             }
-            selectAxis = true;
-            if (Input.GetButton("Select"))
+            if (button[2].GetComponent<Image>().color == Color.green)
             {
-                Application.Quit();
+                if (tmpP1 > 0 || tmpP2 > 0 && !selectAxis)
+                {
+                    button[2].GetComponent<Image>().color = Color.white;
+                    button[1].GetComponent<Image>().color = Color.green;
+                }
+                selectAxis = true;
+                if (Input.GetButton("Select"))
+                {
+                    Application.Quit();
+                }
+                ResetAxes(selectAxis);
+                //Debug.Log("Button 2");
             }
-            ResetAxes(selectAxis);
-            //Debug.Log("Button 2");
         }
+        
     }
     private void ResetAxes(bool tmp)
     {
