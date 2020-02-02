@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
 
         if (type == Type.Shotgun)
         {
-            if (currentLifeTime > 0.1f)
+            if (currentLifeTime > 0.02f)
             {
                 GetComponent<SphereCollider>().enabled = true;
             }

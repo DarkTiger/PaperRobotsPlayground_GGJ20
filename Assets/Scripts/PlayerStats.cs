@@ -79,6 +79,9 @@ public class PlayerStats : MonoBehaviour
         lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
         transform.localPosition = Vector3.zero;
         imgCollectorObject.GetComponent<Image>().enabled = false;
+        playerAttack.currentBullet = playerAttack.defaultBullet;
+        UpdateAmmoRemain(0);
+        UpdateWeaponsHUD();
     }
 
     public void activeGear(bool active)

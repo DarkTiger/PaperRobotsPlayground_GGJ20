@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] Bullet defaultBullet;
+    public Bullet defaultBullet;
     public Bullet[] bullets;
     public Bullet currentBullet;
     public int currentAmmo { get; set;} = 0;
