@@ -10,11 +10,13 @@ public class PlayerAttack : MonoBehaviour
     public int currentAmmo { get; set;} = 0;
     int playerIndex;
     float lastFire = 0;
-
     bool axesPress = false;
+    Rigidbody rigidbody;
 
-    private void Start()
+
+    private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody>();
         playerIndex = GetComponent<PlayerStats>().playerIndex;
         currentAmmo = currentBullet.startAmmo;
     }
@@ -74,27 +76,29 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + transform.forward + transform.up, transform.rotation).GetComponent<Bullet>();
                     bullet.owner = GetComponent<PlayerStats>();
+                    
+                    GetComponent<PlayerStats>().UpdateAmmoRemain(currentAmmo);
+                    rigidbody.velocity -= transform.forward * bullet.recoil;
 
                     lastFire = Time.time;
                     currentAmmo--;
-
 
                     if (currentAmmo == 0)
                     {
                         currentBullet = defaultBullet;
                     }
-                    GetComponent<PlayerStats>().UpdateAmmoRemain(currentAmmo);
                 }
             }
             else
             {
-                if (((currentAmmo > 0 || currentBullet.type == Bullet.Type.Default) && Input.GetAxis("FireP" + playerIndex) > 0)&&!axesPress)
+                if (((currentAmmo > 0 || currentBullet.type == Bullet.Type.Default) && Input.GetAxis("FireP" + playerIndex) > 0) && !axesPress)
                 {
                     axesPress = true;
                     if (currentBullet.type == Bullet.Type.Default || currentBullet.type == Bullet.Type.Sniper)
                     {
                         Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + (transform.forward * 1.5f) + transform.up, transform.rotation).GetComponent<Bullet>();
                         bullet.owner = GetComponent<PlayerStats>();
+                        rigidbody.velocity -= transform.forward * bullet.recoil;
                     }
                     else
                     {
@@ -102,6 +106,7 @@ public class PlayerAttack : MonoBehaviour
                         {
                             Bullet bullet = Instantiate(currentBullet.gameObject, transform.position + transform.forward + transform.up, transform.rotation).GetComponent<Bullet>();
                             bullet.owner = GetComponent<PlayerStats>();
+                            rigidbody.velocity -= transform.forward * bullet.recoil;
                         }
                     }
 
@@ -112,6 +117,7 @@ public class PlayerAttack : MonoBehaviour
                     {
                         currentBullet = defaultBullet;
                     }
+
                     GetComponent<PlayerStats>().UpdateAmmoRemain(currentAmmo);
                 }
             }

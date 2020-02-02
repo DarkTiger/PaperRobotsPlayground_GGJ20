@@ -6,11 +6,11 @@ public class Bullet : MonoBehaviour
     public Type type = Type.Default;
     public Sprite weaponSprite = null;
     [SerializeField] float gravityForce = 1;
-    //[SerializeField] float persistence = 30;
     public int damage = 1;
     public int startAmmo = 1;
     public float force = 1;
     public float fireDelay = 1;
+    public float recoil = 1;
     Planet planet;
     Rigidbody rigidbody;
     float currentLifeTime = 0;

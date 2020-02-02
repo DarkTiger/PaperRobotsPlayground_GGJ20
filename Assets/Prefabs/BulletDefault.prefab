@@ -130,3 +130,4 @@ MonoBehaviour:
   startAmmo: 1
   force: 25
   fireDelay: 0.5
+  recoil: 5
