@@ -159,11 +159,12 @@ public class PlayerStats : MonoBehaviour
     {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
-        //StartCoroutine(VictoryCoroutine());
+        StartCoroutine(VictoryCoroutine());
     }
 
-    /*IEnumerator VictoryCoroutine()
+    IEnumerator VictoryCoroutine()
     {
         yield return new WaitForSeconds(waitTime);
-    }*/
+        victory[playerIndex - 1].SetActive(true);
+    }
 }

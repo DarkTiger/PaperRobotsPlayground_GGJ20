@@ -154,7 +154,7 @@ RectTransform:
   m_GameObject: {fileID: 393288413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1392794369}
   m_RootOrder: 3
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5d9bbc0978d13845b53b1cec142fa01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76670c392066d564a805bfa2d31f8c9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -415,7 +415,7 @@ RectTransform:
   m_GameObject: {fileID: 1015368742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1392794369}
   m_RootOrder: 4
@@ -1225,6 +1225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7621228966641622631, guid: de0e81f2797de524ead2aa8b1fb6f3d5,
         type: 3}
+      propertyPath: victory.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621228966641622631, guid: de0e81f2797de524ead2aa8b1fb6f3d5,
+        type: 3}
       propertyPath: lblHealth
       value: 
       objectReference: {fileID: 4424606367519825754}
@@ -1263,6 +1268,16 @@ PrefabInstance:
       propertyPath: shipModelVariants.Array.data[2]
       value: 
       objectReference: {fileID: 2081040864}
+    - target: {fileID: 7621228966641622631, guid: de0e81f2797de524ead2aa8b1fb6f3d5,
+        type: 3}
+      propertyPath: victory.Array.data[0]
+      value: 
+      objectReference: {fileID: 393288413}
+    - target: {fileID: 7621228966641622631, guid: de0e81f2797de524ead2aa8b1fb6f3d5,
+        type: 3}
+      propertyPath: victory.Array.data[1]
+      value: 
+      objectReference: {fileID: 1015368742}
     - target: {fileID: 8981547376298653419, guid: de0e81f2797de524ead2aa8b1fb6f3d5,
         type: 3}
       propertyPath: m_LocalPosition.y
