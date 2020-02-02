@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Bonus : MonoBehaviour
+public class AutoRotation : MonoBehaviour
 {
     void Update()
     {
