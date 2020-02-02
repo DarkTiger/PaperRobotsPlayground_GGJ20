@@ -105,7 +105,7 @@ public class PlayerStats : MonoBehaviour
         if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
         {
             repair += 25;
-            lblRepair.GetComponent<Text>().text = "Repair: " + repair;
+            lblRepair.GetComponent<Text>().text = "Repair: " + repair + "%";
             imgCollectorObject.GetComponent<Image>().enabled = false;
             GameManager.objOnScene = false;
             GameManager.objOwner = null;
