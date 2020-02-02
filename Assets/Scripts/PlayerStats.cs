@@ -39,8 +39,8 @@ public class PlayerStats : MonoBehaviour
         UpdateAmmoRemain(playerAttack.currentAmmo);
         health = maxHealth;
         repair = 0;
-        lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
-        lblRepair.GetComponent<Text>().text = "Repair:" + repair + "%";
+        lblHealth.GetComponent<Text>().text = "Life: " + health + "%";
+        lblRepair.GetComponent<Text>().text = "Repair: " + repair + "%";
         UpdateWeaponsHUD();
         imgCollectorObject.GetComponent<Image>().enabled = false;
     }
@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
         {
             Die(1, bullet);
         }
-        lblHealth.GetComponent<Text>().text = "Life:"+health+"%";
+        lblHealth.GetComponent<Text>().text = "Life: "+health+"%";
     }
 
     void Die(int i, Bullet bullet)
@@ -76,7 +76,7 @@ public class PlayerStats : MonoBehaviour
     void Respawn()
     {
         health = maxHealth;
-        lblHealth.GetComponent<Text>().text = "Life:" + health + "%";
+        lblHealth.GetComponent<Text>().text = "Life: " + health + "%";
         transform.localPosition = Vector3.zero;
         imgCollectorObject.GetComponent<Image>().enabled = false;
         playerAttack.currentBullet = playerAttack.defaultBullet;
@@ -105,7 +105,7 @@ public class PlayerStats : MonoBehaviour
         if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
         {
             repair += 25;
-            lblRepair.GetComponent<Text>().text = "Repair:" + repair;
+            lblRepair.GetComponent<Text>().text = "Repair: " + repair;
             imgCollectorObject.GetComponent<Image>().enabled = false;
             GameManager.objOnScene = false;
             GameManager.objOwner = null;
@@ -123,11 +123,11 @@ public class PlayerStats : MonoBehaviour
         if (playerAttack.currentBullet.type == Bullet.Type.Default)
         {
             ammoRemainString = "∞";
-            lblAmmo.text = "Ammo:" + ammoRemainString + "/" + ammoRemainString;
+            lblAmmo.text = "Ammo: " + ammoRemainString + "/" + ammoRemainString;
         }
         else
         {
-            lblAmmo.text = "Ammo:" + ammoRemainString + "/" + playerAttack.currentBullet.startAmmo;
+            lblAmmo.text = "Ammo: " + ammoRemainString + "/" + playerAttack.currentBullet.startAmmo;
         }
         UpdateWeaponsHUD();
     }
