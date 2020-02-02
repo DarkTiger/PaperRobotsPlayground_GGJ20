@@ -112,6 +112,7 @@ public class PlayerStats : MonoBehaviour
         bool repairObject = imgCollectorObject.GetComponent<Image>().enabled;
         if (other.gameObject.CompareTag("ShipP"+playerIndex)&&repairObject)
         {
+            GetComponent<AudioSource>().Play();
             repair += 25;                    
 
             switch (repair)
@@ -125,6 +126,7 @@ public class PlayerStats : MonoBehaviour
                     currentShipVariant = 2;
                     shipModelVariants[1].SetActive(false);
                     shipModelVariants[2].SetActive(true);
+                    Victory();
                     break;
             }
 
