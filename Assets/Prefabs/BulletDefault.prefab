@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3462290846092163065}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: 38403c6f041787245bf3c2a417de8a57, type: 3}
 --- !u!23 &7713804699957878453
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!54 &360406013487268543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   weaponSprite: {fileID: 21300000, guid: 75399bb1c3599c74b9b76403023323f3, type: 3}
-  gravityForce: 12.5
+  gravityForce: 12.4
   damage: 10
   startAmmo: 1
   force: 25

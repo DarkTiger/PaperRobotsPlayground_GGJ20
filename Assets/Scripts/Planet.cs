@@ -55,7 +55,7 @@ public class Planet : MonoBehaviour
                 {
                     Transform bonusInstantiated = Instantiate(bonusObject, hit.point, Quaternion.identity).transform;
                     bonusInstantiated.up = (bonusInstantiated.position - transform.position).normalized;
-                    bonusInstantiated.position += bonusInstantiated.up * 1.5f; 
+                    bonusInstantiated.position += bonusInstantiated.up * 0.75f; 
                 }
             }
         }

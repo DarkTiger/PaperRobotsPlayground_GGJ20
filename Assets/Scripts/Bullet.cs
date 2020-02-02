@@ -27,6 +27,9 @@ public class Bullet : MonoBehaviour
         planet = FindObjectOfType<Planet>();
         Vector3 randomOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.05f, 0.05f), 0);
         rigidbody.AddForce((transform.forward + (type == Type.Shotgun? transform.TransformDirection(randomOffset) : Vector3.zero)) * force, ForceMode.VelocityChange);
+        transform.Rotate(Vector3.up * Random.Range(-180, 180));
+        transform.Rotate(Vector3.right * Random.Range(-180, 180));
+        transform.Rotate(Vector3.forward * Random.Range(-180, 180));
     }
 
     private void Update()
