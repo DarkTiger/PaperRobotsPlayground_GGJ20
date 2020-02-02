@@ -197,6 +197,6 @@ public class PlayerStats : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

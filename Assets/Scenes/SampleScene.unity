@@ -986,6 +986,12 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 8241944258141720091, guid: 8cd267229632dcb4095daf59732f0f6d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -6086992576830143098, guid: b336aa21f99b79844b7a5388803ee931,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd267229632dcb4095daf59732f0f6d, type: 3}
 --- !u!1 &863960781 stripped

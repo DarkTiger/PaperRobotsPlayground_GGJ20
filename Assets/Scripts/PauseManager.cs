@@ -24,10 +24,9 @@ public class PauseManager : MonoBehaviour
             
             if (isPaused)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
             ChangePauseStatus();
-            //SceneManager.LoadScene(0);
         }
     }
 

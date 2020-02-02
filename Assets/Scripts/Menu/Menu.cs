@@ -35,7 +35,7 @@ public class Menu : MonoBehaviour
             if (Input.GetButton("Continue"))
             {
                 //Debug.Log(Input.GetButton("Select"));
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
         if (credR)
