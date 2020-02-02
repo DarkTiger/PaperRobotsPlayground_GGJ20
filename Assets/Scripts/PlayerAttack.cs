@@ -12,10 +12,12 @@ public class PlayerAttack : MonoBehaviour
     float lastFire = 0;
     bool axesPress = false;
     Rigidbody rigidbody;
+    PlayerAudio playerAudio;
 
 
     private void Awake()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         rigidbody = GetComponent<Rigidbody>();
         playerIndex = GetComponent<PlayerStats>().playerIndex;
         currentAmmo = currentBullet.startAmmo;

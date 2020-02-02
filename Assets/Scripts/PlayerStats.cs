@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Image imgWeapons;
     [SerializeField] GameObject objectSpawn;
     [SerializeField] GameObject[] shipModelVariants;
-    [SerializeField] GameObject[] victory;
+    [SerializeField] Image[] victory;
     
     public int playerIndex;
     public int health;
@@ -20,6 +21,7 @@ public class PlayerStats : MonoBehaviour
     public int repair;
 
     PlayerAttack playerAttack;
+    PlayerAudio playerAudio;
     int currentShipVariant = 0;
 
     public float waitTime = 1f;
@@ -32,9 +34,15 @@ public class PlayerStats : MonoBehaviour
             return health <= 0;
         }
     }
+
+    private void Awake()
+    {
+        playerAudio = GetComponent<PlayerAudio>();
+        playerAttack = GetComponent<PlayerAttack>();
+    }
+
     void Start()
     {
-        playerAttack = GetComponent<PlayerAttack>();
         UpdateAmmoRemain(playerAttack.currentAmmo);
         health = maxHealth;
         repair = 0;
@@ -52,13 +60,19 @@ public class PlayerStats : MonoBehaviour
         {
             Die(1, bullet);
         }
+        else
+        {
+            playerAudio.damageAudio.Play();
+        }
         lblHealth.GetComponent<Text>().text = "Life: "+health+"%";
     }
 
     void Die(int i, Bullet bullet)
     {
-        Vector3 posTemp = transform.position + transform.up;      
-        
+        Vector3 posTemp = transform.position + transform.up;
+
+        playerAudio.deathAudio.Play();
+
         StartCoroutine(Respawn());
 
         if (!GameManager.objOnScene && GameManager.objOwner != this && bullet.owner == this) { return; }
@@ -161,12 +175,28 @@ public class PlayerStats : MonoBehaviour
     {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
+
+        FindObjectOfType<Planet>().GetComponent<AudioSource>().Stop();
+
         StartCoroutine(VictoryCoroutine());
     }
 
     IEnumerator VictoryCoroutine()
     {
         yield return new WaitForSeconds(waitTime);
-        victory[playerIndex - 1].SetActive(true);
+
+        playerAudio.victoryAudio.Play();
+
+        while(victory[playerIndex - 1].color.a < 1)
+        {
+            Color newColor = victory[playerIndex - 1].color;
+            newColor.a += 0.5f * Time.deltaTime;
+            victory[playerIndex - 1].color = newColor;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene(0);
     }
 }

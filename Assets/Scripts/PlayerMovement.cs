@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerAttack playerAttack;
     PlayerStats playerStat;
+    PlayerAudio playerAudio;
     private int playerIndex;
 
     private bool isGrouded;
@@ -27,12 +28,13 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<PlayerAudio>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerStat = GetComponent<PlayerStats>();
     }
 
     void Start()
-    {
-        playerAttack = GetComponent<PlayerAttack>();
-        playerStat = GetComponent<PlayerStats>();
+    {       
         planet = FindObjectOfType<Planet>();
         isGrouded = true;
         playerIndex = playerStat.playerIndex;
@@ -52,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(direction * gravityForce, ForceMode.Acceleration);
 
             rigidBody.AddTorque(transform.up * horizontalMovement * rotationSpeed, ForceMode.VelocityChange);
-
             rigidBody.AddForce(transform.forward * verticalMovement * movementSpeed, ForceMode.Impulse);
             rigidBody.AddForce(-transform.right * strifeMovement * (movementSpeed / 2), ForceMode.Impulse);
         }
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             axesPress = true;
             rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrouded = false;
+            playerAudio.jumpAudio.Play();
         }
         ReversePressAxe();
     }
@@ -103,10 +105,13 @@ public class PlayerMovement : MonoBehaviour
     {       
         if (other.CompareTag("Gear"))
         {
+            playerAudio.gearPickAudio.Play();
             playerStat.activeGear(true);
         }
         else
         {
+            playerAudio.weaponPickAudio.Play();
+
             int i = 0;
             if (other.CompareTag("Sniper"))
             {

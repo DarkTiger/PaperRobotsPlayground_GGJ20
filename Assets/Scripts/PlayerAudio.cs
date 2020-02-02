@@ -9,5 +9,5 @@ public class PlayerAudio : MonoBehaviour
     public AudioSource gearPickAudio;
     public AudioSource weaponPickAudio;
     public AudioSource jumpAudio;
-    public AudioSource stepAudio;
+    public AudioSource victoryAudio;
 }
